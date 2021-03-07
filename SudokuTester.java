@@ -101,14 +101,14 @@ public class SudokuTester {
 
         if(! game.solver().equals(expecting.sudoku.getValues())){
             passGameTest = false;
-            System.out.println("--------------- Failed --------------\n\n\n");
+            System.out.println("--------------- Failed --------------\n");
         }else{
             System.out.println("----------------Pass-----------------\n");
         }
 
-        System.out.println("-----------------Analyzing---------------\n");
 
         if(! passGameTest){
+            System.out.println("-----------------Analyzing---------------\n");
             for(int row = 0; row < expecting.sudoku.getValues().length; row++){
                 for(int col = 0; col < expecting.sudoku.getValues()[0].length; col++){
                     if(expecting.sudoku.getValue(row,col) != game.sudoku.getValue(row,col)){
