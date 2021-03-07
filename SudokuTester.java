@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class SudokuTester {
 
@@ -111,30 +112,32 @@ public class SudokuTester {
         expecting.sudoku.setValue(2, 3, 2);
         expecting.sudoku.setValue(2, 4, 1);
 
-        if(! game.solver().equals(expecting.sudoku.getValues())){
-            passGameTest = false;
+        game.solver();
+
+        System.out.println("-----------Analyzing---------------\n");
+        for(int row = 0; row < expecting.sudoku.getValues().length; row++){
+            for(int col = 0; col < expecting.sudoku.getValues()[0].length; col++){
+                if(expecting.sudoku.getValue(row,col) != game.sudoku.getValue(row,col)){
+                    passGameTest = false;
+                    System.out.println("Row:"+row+"\tColumn:"+col+"\n Expected value:"+
+                            expecting.sudoku.getValue(row,col)+"\n Received value:"+ game.sudoku.getValue(row,col)+"\n");
+                }
+            }
+        }
+        System.out.println("--------Expected sudoku: --------\n");
+        printSudoku(expecting);
+
+        System.out.println("--------Your sudoku: ------------\n");
+        printSudoku(game);
+
+
+        if(!passGameTest){
             System.out.println("--------------- Failed --------------\n");
         }else{
             System.out.println("----------------Pass-----------------\n");
         }
 
 
-        if(! passGameTest){
-            System.out.println("-----------------Analyzing---------------\n");
-            for(int row = 0; row < expecting.sudoku.getValues().length; row++){
-                for(int col = 0; col < expecting.sudoku.getValues()[0].length; col++){
-                    if(expecting.sudoku.getValue(row,col) != game.sudoku.getValue(row,col)){
-                        System.out.println("Row:"+row+"\tColumn:"+col+"\n Expected value:"+
-                                expecting.sudoku.getValue(row,col)+"\n Received value:"+ game.sudoku.getValue(row,col)+"\n");
-                    }
-                }
-            }
-            System.out.println("--------Expected sudoku: --------\n");
-            printSudoku(expecting);
-
-            System.out.println("--------Your sudoku: ------------\n");
-            printSudoku(game);
-        }
 
 
     }
