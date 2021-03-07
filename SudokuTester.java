@@ -54,6 +54,18 @@ public class SudokuTester {
         game.sudoku.setRegion(4,new_region5);
 
     }
+    private void printSudoku(Game game){
+        int[][] answer = game.solver();
+        for (int i=0; i<answer.length;i++) {
+            for (int j=0; j<answer[0].length; j++) {
+                System.out.print(answer[i][j]);
+                if (j<answer[0].length -1) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
     private void Initial(){
         boolean passGameTest = true;
 
@@ -117,7 +129,14 @@ public class SudokuTester {
                     }
                 }
             }
+            System.out.println("--------Expected sudoku: --------\n");
+            printSudoku(expecting);
+
+            System.out.println("--------Your sudoku: ------------\n");
+            printSudoku(game);
         }
+
+
     }
 
     public static void main(String[] args) {
